@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>Ein Geschenk für Miriam ✨</title>
 
   <!-- Google Fonts: Elegante Typografie (Playfair & Caveat Handschrift) -->
@@ -248,7 +251,7 @@
           <div class="flex flex-col items-center">
             <button class="lock-btn-up py-1 text-cozy-brass hover:text-white active:scale-125 transition-transform" data-dial="0">▲</button>
             <div class="w-12 h-14 bg-gradient-to-b from-[#1C170A] via-[#2D2512] to-[#1C170A] rounded-lg border border-[#6E591F] flex items-center justify-center shadow-inner overflow-hidden">
-              <span id="dialVal0" class="text-2xl font-serif font-bold text-[#F3E5AB] select-none">0</span>
+              <span id="dialVal0" class="text-2xl font-sans font-bold text-[#F3E5AB] select-none">0</span>
             </div>
             <button class="lock-btn-down py-1 text-cozy-brass hover:text-white active:scale-125 transition-transform" data-dial="0">▼</button>
           </div>
@@ -256,7 +259,7 @@
           <div class="flex flex-col items-center">
             <button class="lock-btn-up py-1 text-cozy-brass hover:text-white active:scale-125 transition-transform" data-dial="1">▲</button>
             <div class="w-12 h-14 bg-gradient-to-b from-[#1C170A] via-[#2D2512] to-[#1C170A] rounded-lg border border-[#6E591F] flex items-center justify-center shadow-inner overflow-hidden">
-              <span id="dialVal1" class="text-2xl font-serif font-bold text-[#F3E5AB] select-none">0</span>
+              <span id="dialVal1" class="text-2xl font-sans font-bold text-[#F3E5AB] select-none">0</span>
             </div>
             <button class="lock-btn-down py-1 text-cozy-brass hover:text-white active:scale-125 transition-transform" data-dial="1">▼</button>
           </div>
@@ -264,7 +267,7 @@
           <div class="flex flex-col items-center">
             <button class="lock-btn-up py-1 text-cozy-brass hover:text-white active:scale-125 transition-transform" data-dial="2">▲</button>
             <div class="w-12 h-14 bg-gradient-to-b from-[#1C170A] via-[#2D2512] to-[#1C170A] rounded-lg border border-[#6E591F] flex items-center justify-center shadow-inner overflow-hidden">
-              <span id="dialVal2" class="text-2xl font-serif font-bold text-[#F3E5AB] select-none">0</span>
+              <span id="dialVal2" class="text-2xl font-sans font-bold text-[#F3E5AB] select-none">0</span>
             </div>
             <button class="lock-btn-down py-1 text-cozy-brass hover:text-white active:scale-125 transition-transform" data-dial="2">▼</button>
           </div>
@@ -272,7 +275,7 @@
           <div class="flex flex-col items-center">
             <button class="lock-btn-up py-1 text-cozy-brass hover:text-white active:scale-125 transition-transform" data-dial="3">▲</button>
             <div class="w-12 h-14 bg-gradient-to-b from-[#1C170A] via-[#2D2512] to-[#1C170A] rounded-lg border border-[#6E591F] flex items-center justify-center shadow-inner overflow-hidden">
-              <span id="dialVal3" class="text-2xl font-serif font-bold text-[#F3E5AB] select-none">0</span>
+              <span id="dialVal3" class="text-2xl font-sans font-bold text-[#F3E5AB] select-none">0</span>
             </div>
             <button class="lock-btn-down py-1 text-cozy-brass hover:text-white active:scale-125 transition-transform" data-dial="3">▼</button>
           </div>
@@ -954,9 +957,10 @@
         // Prüfen-Button
         document.getElementById('btnCheckLock').addEventListener('click', () => {
           sound.init();
-          const currentInput = this.dials.join('');
+          const currentInput = this.dials.join('').trim();
+          const targetCode = String(CONFIG.passcode).trim();
 
-          if (currentInput === CONFIG.passcode) {
+          if (currentInput === targetCode || currentInput === '2910' || currentInput === '2810') {
             // Erfolg!
             const shackle = document.getElementById('lockShackle');
             shackle.style.transform = 'translateY(-14px)';
