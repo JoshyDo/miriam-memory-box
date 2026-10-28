@@ -15,7 +15,7 @@ Alle Inhalte können direkt in der `index.html` im `CONFIG`-Objekt angepasst wer
 ```javascript
 const CONFIG = {
   recipientName: "Miriam",
-  passcode: "2810",
+  passcode: "2910",
   passcodeHint: "Tipp: Dein Geburtstag im Format (TT.MM) ✨",
   polaroids: [ ... ],
   letter: { ... }
