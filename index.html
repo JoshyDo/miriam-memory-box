@@ -397,15 +397,6 @@
         <div class="p-6 overflow-y-auto space-y-4 font-sans text-sm text-cozy-ink/90 leading-relaxed" style="touch-action: pan-y;">
           <div id="letterParagraphs" class="space-y-3 font-serif text-base text-stone-800"></div>
 
-          <!-- Geschenk / Gutschein Box -->
-          <div id="giftBox" class="mt-6 p-4 rounded-2xl bg-gradient-to-br from-[#FAF3EA] to-[#F3E6D5] border-2 border-dashed border-cozy-ribbon/40 space-y-2">
-            <div class="flex items-center space-x-2">
-              <span class="text-base">🎁</span>
-              <h4 id="giftTitle" class="font-serif font-bold text-cozy-ribbon text-base">Dein Geburtstagsgeschenk</h4>
-            </div>
-            <p id="giftText" class="text-xs text-cozy-ink font-sans leading-relaxed"></p>
-          </div>
-
           <!-- Signatur -->
           <div class="pt-4 text-right">
             <p id="letterSignature" class="font-handwriting text-2xl text-cozy-ribbon transform -rotate-2 whitespace-pre-line"></p>
@@ -481,7 +472,7 @@
         }
       ],
 
-      // Der Brief und das finale Geburtstagsgeschenk
+      // Der persönliche Geburtstagsbrief
       letter: {
         salutation: "Liebe Miriam,",
         paragraphs: [
@@ -489,8 +480,6 @@
           "Ich wollte dir etwas basteln, das ein kleines bisschen von all der Wärme und Freude festhält, die du mir jeden Tag schenkst. Du machst mein Leben so viel bunter, lustiger und schöner.",
           "Für dein neues Lebensjahr wünsche ich dir nur das Allerbeste: unzählige Glücksmomente, Gesundheit, spannende neue Pläne und dass all deine heimlichen Wünsche in Erfüllung gehen."
         ],
-        giftTitle: "Dein Geburtstagsgeschenk:",
-        giftText: "Ein gemeinsames Verwöhn-Wochenende mit Meerblick, erstklassigem Essen und ganz viel Zeit nur für uns zwei! 🌊🥐🥂",
         signature: "Von ganzem Herzen,\nIn Liebe"
       }
     };
@@ -825,8 +814,6 @@
           pContainer.appendChild(p);
         });
 
-        document.getElementById('giftTitle').textContent = CONFIG.letter.giftTitle;
-        document.getElementById('giftText').textContent = CONFIG.letter.giftText;
         document.getElementById('letterSignature').textContent = CONFIG.letter.signature;
       }
 
