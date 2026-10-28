@@ -502,6 +502,7 @@
       constructor() {
         this.ctx = null;
         this.isMuted = false;
+        this.activeOscs = [];
       }
 
       init() {
@@ -629,26 +630,25 @@
         setTimeout(() => this.playPaper(), 70);
       }
 
-      // Melodiöser Geburtstagssong (Spieldosen-Ästhetik / Music Box)
+      // Melodiöser Geburtstagssong (Kompakter Spieldosen-Jingle / Music Box)
       playHappyBirthday() {
         if (!this.ctx) return;
-        const now = this.ctx.currentTime + 0.1;
+        this.stopMusic();
+        const now = this.ctx.currentTime + 0.05;
         
         // Noten-Frequenzen (Hz)
         const notes = {
           G4: 392.00, A4: 440.00, B4: 493.88, C5: 523.25,
-          D5: 587.33, E5: 659.25, F5: 698.46, G5: 783.99
+          D5: 587.33, E5: 659.25, G5: 783.99
         };
 
-        // Melodie: Note & Dauer in Beats (1 Beat = 0.35s)
+        // Kurzer, charmanter 2-Zeiler (~2.8s statt 9s)
         const song = [
-          { n: 'G4', d: 0.75 }, { n: 'G4', d: 0.25 }, { n: 'A4', d: 1.0 }, { n: 'G4', d: 1.0 }, { n: 'C5', d: 1.0 }, { n: 'B4', d: 2.0 },
-          { n: 'G4', d: 0.75 }, { n: 'G4', d: 0.25 }, { n: 'A4', d: 1.0 }, { n: 'G4', d: 1.0 }, { n: 'D5', d: 1.0 }, { n: 'C5', d: 2.0 },
-          { n: 'G4', d: 0.75 }, { n: 'G4', d: 0.25 }, { n: 'G5', d: 1.0 }, { n: 'E5', d: 1.0 }, { n: 'C5', d: 1.0 }, { n: 'B4', d: 1.0 }, { n: 'A4', d: 1.5 },
-          { n: 'F5', d: 0.75 }, { n: 'F5', d: 0.25 }, { n: 'E5', d: 1.0 }, { n: 'C5', d: 1.0 }, { n: 'D5', d: 1.0 }, { n: 'C5', d: 2.5 }
+          { n: 'G4', d: 0.75 }, { n: 'G4', d: 0.25 }, { n: 'A4', d: 0.9 }, { n: 'G4', d: 0.9 }, { n: 'C5', d: 0.9 }, { n: 'B4', d: 1.5 },
+          { n: 'G4', d: 0.75 }, { n: 'G4', d: 0.25 }, { n: 'A4', d: 0.9 }, { n: 'G4', d: 0.9 }, { n: 'D5', d: 0.9 }, { n: 'C5', d: 1.8 }
         ];
 
-        const beatDuration = 0.34;
+        const beatDuration = 0.25;
         let timeCursor = now;
 
         song.forEach(item => {
@@ -667,7 +667,7 @@
           osc2.frequency.setValueAtTime(freq * 2, timeCursor); // 1 Oktave höher für Glanz
 
           gain.gain.setValueAtTime(0.2, timeCursor);
-          gain.gain.exponentialRampToValueAtTime(0.001, timeCursor + duration * 1.3);
+          gain.gain.exponentialRampToValueAtTime(0.001, timeCursor + duration * 1.25);
 
           osc1.connect(gain);
           osc2.connect(gain);
@@ -675,11 +675,21 @@
 
           osc1.start(timeCursor);
           osc2.start(timeCursor);
-          osc1.stop(timeCursor + duration * 1.4);
-          osc2.stop(timeCursor + duration * 1.4);
+          osc1.stop(timeCursor + duration * 1.3);
+          osc2.stop(timeCursor + duration * 1.3);
 
+          this.activeOscs.push(osc1, osc2);
           timeCursor += duration;
         });
+      }
+
+      stopMusic() {
+        if (this.activeOscs && this.activeOscs.length) {
+          this.activeOscs.forEach(osc => {
+            try { osc.stop(); } catch (e) {}
+          });
+          this.activeOscs = [];
+        }
       }
     }
 
