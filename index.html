@@ -68,20 +68,34 @@
     /* 3D Flip Styles für Polaroids */
     .perspective-container {
       perspective: 1200px;
+      -webkit-perspective: 1200px;
+    }
+    #polaroidStack {
+      transform-style: preserve-3d;
+      -webkit-transform-style: preserve-3d;
     }
     .card-flipper {
       transition: transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1);
       transform-style: preserve-3d;
+      -webkit-transform-style: preserve-3d;
+      will-change: transform;
     }
     .card-flipper.flipped {
-      transform: rotateY(180deg);
+      transform: rotateY(180deg) !important;
     }
     .card-front, .card-back {
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
+      transform-style: preserve-3d;
+      -webkit-transform-style: preserve-3d;
+    }
+    .card-front {
+      transform: rotateY(0deg);
+      -webkit-transform: rotateY(0deg);
     }
     .card-back {
       transform: rotateY(180deg);
+      -webkit-transform: rotateY(180deg);
     }
 
     /* Texturierte Schatten für physische Haptik */
@@ -1008,7 +1022,8 @@
           
           // Leichte zufällige Drehung für authentischen Stapel-Look
           const rotation = (index % 2 === 0 ? 1 : -1) * (index * 2.2);
-          card.style.transform = `rotate(${rotation}deg)`;
+          card.dataset.rotation = rotation;
+          card.style.transform = `rotate(${rotation}deg) rotateY(0deg)`;
           card.style.zIndex = (CONFIG.polaroids.length - index).toString();
 
           card.innerHTML = `
@@ -1063,8 +1078,10 @@
         const topCard = document.getElementById(`polaroid-${this.currentPolaroidIndex}`);
         if (!topCard) return;
 
+        const rotation = topCard.dataset.rotation || 0;
         this.isCardFlipped = !this.isCardFlipped;
         topCard.classList.toggle('flipped', this.isCardFlipped);
+        topCard.style.transform = `rotate(${rotation}deg) rotateY(${this.isCardFlipped ? 180 : 0}deg)`;
         sound.playPaper();
         sound.vibrate(20);
       }
