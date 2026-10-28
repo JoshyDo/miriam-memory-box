@@ -147,13 +147,15 @@
       <span class="text-xs text-cozy-muted/60">•</span>
       <span id="stepTitle" class="text-xs font-serif italic text-cozy-muted">Päckchen empfangen</span>
     </div>
-    <!-- Step Dots -->
+    <!-- Step Dots (7 Stufen: Intro -> Schleife -> Papier -> Schloss -> Schatulle -> Fotos -> Brief) -->
     <div class="flex items-center space-x-1.5" id="stepDots">
       <div class="w-2 h-2 rounded-full bg-cozy-ribbon transition-all duration-300" data-step="0"></div>
       <div class="w-2 h-2 rounded-full bg-cozy-muted/30 transition-all duration-300" data-step="1"></div>
       <div class="w-2 h-2 rounded-full bg-cozy-muted/30 transition-all duration-300" data-step="2"></div>
       <div class="w-2 h-2 rounded-full bg-cozy-muted/30 transition-all duration-300" data-step="3"></div>
       <div class="w-2 h-2 rounded-full bg-cozy-muted/30 transition-all duration-300" data-step="4"></div>
+      <div class="w-2 h-2 rounded-full bg-cozy-muted/30 transition-all duration-300" data-step="5"></div>
+      <div class="w-2 h-2 rounded-full bg-cozy-muted/30 transition-all duration-300" data-step="6"></div>
     </div>
   </header>
 
@@ -238,11 +240,58 @@
     </div>
 
     <!-- ========================================== -->
-    <!-- SCREEN 2: VINTAGE-ZAHLENSCHLOSS -->
+    <!-- SCREEN 2: GESCHENKPAPIER AUFFALTEN -->
+    <!-- ========================================== -->
+    <div id="screenPaper" class="w-full hidden flex-col items-center justify-center transition-all duration-500">
+      <div class="text-center mb-6 space-y-1">
+        <span class="text-xs font-sans uppercase tracking-widest text-cozy-ribbon font-bold">Schritt 2</span>
+        <h2 class="text-2xl font-serif font-bold">Das Geschenkpapier</h2>
+        <p class="text-xs text-cozy-muted font-sans" id="paperSubtitle">Tippe auf das Siegel, um das Papier aufzufalten ✨</p>
+      </div>
+
+      <!-- Eingepacktes Paket mit 3D Faltung -->
+      <div id="paperBoxArea" class="perspective-container relative w-72 h-72 rounded-3xl bg-stone-900/10 shadow-kraft flex items-center justify-center cursor-pointer select-none">
+        
+        <!-- Darunter liegende Schatulle (Vorschau) -->
+        <div class="absolute inset-2 rounded-2xl bg-gradient-to-br from-[#ECD79B] via-[#D4AF37] to-[#8C6D18] border-2 border-[#C9A22E] shadow-inner flex flex-col items-center justify-center p-4">
+          <div class="w-14 h-14 rounded-full border-2 border-[#57440E]/40 flex items-center justify-center text-2xl shadow-sm">🔒</div>
+          <span class="font-serif font-bold text-[#57440E] mt-3 tracking-wider text-sm"><span class="recipient-name">Miriam</span>'s Schatulle</span>
+          <span class="text-[10px] font-sans text-[#57440E]/70 uppercase tracking-widest mt-0.5">Verschlossen</span>
+        </div>
+
+        <!-- Linker Papierflügel -->
+        <div id="paperFlapLeft" class="absolute inset-y-0 left-0 w-1/2 kraft-pattern rounded-l-3xl border-r border-cozy-kraftDark/60 shadow-lg transition-transform duration-700 origin-left z-20 flex items-center justify-end">
+          <div class="w-1.5 h-full bg-black/10"></div>
+        </div>
+
+        <!-- Rechter Papierflügel -->
+        <div id="paperFlapRight" class="absolute inset-y-0 right-0 w-1/2 kraft-pattern rounded-r-3xl border-l border-cozy-kraftDark/60 shadow-lg transition-transform duration-700 origin-right z-20 flex items-center justify-start">
+          <div class="w-1.5 h-full bg-black/10"></div>
+        </div>
+
+        <!-- Klebestreifen / Sticker in der Mitte -->
+        <div id="paperTape" class="absolute z-30 flex items-center justify-center transition-all duration-500">
+          <div class="bg-[#FFFDF9] px-4 py-2 rounded-full shadow-xl border border-cozy-ribbonGold flex items-center space-x-1.5 active:scale-95 transition-transform">
+            <span class="text-sm">✨</span>
+            <span class="text-xs font-handwriting text-cozy-ribbon font-bold text-base tracking-wide">Für <span class="recipient-name">Miriam</span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Button darunter -->
+      <div class="mt-5">
+        <button id="btnOpenPaper" class="py-2.5 px-6 rounded-xl bg-cozy-card border border-cozy-kraftDark/40 text-xs font-sans font-medium text-cozy-ink active:scale-95 transition-transform flex items-center space-x-1.5 shadow-sm">
+          <span>Papier auffalten 👐</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SCREEN 3: VINTAGE-ZAHLENSCHLOSS -->
     <!-- ========================================== -->
     <div id="screenLock" class="w-full hidden flex-col items-center justify-center transition-all duration-500">
       <div class="text-center mb-4 space-y-1">
-        <span class="text-xs font-sans uppercase tracking-widest text-cozy-brassDark font-bold">Schritt 2</span>
+        <span class="text-xs font-sans uppercase tracking-widest text-cozy-brassDark font-bold">Schritt 3</span>
         <h2 class="text-2xl font-serif font-bold">Das Messingschloss</h2>
         <p class="text-xs text-cozy-muted font-sans">Welcher 4-stellige Code öffnet das Geheimnis?</p>
       </div>
@@ -314,11 +363,69 @@
     </div>
 
     <!-- ========================================== -->
-    <!-- SCREEN 3: POLAROID STAPEL -->
+    <!-- SCREEN 4: SCHATULLE & SEIDENPAPIER -->
+    <!-- ========================================== -->
+    <div id="screenChest" class="w-full hidden flex-col items-center justify-center transition-all duration-500">
+      <div class="text-center mb-6 space-y-1">
+        <span class="text-xs font-sans uppercase tracking-widest text-cozy-brassDark font-bold">Schritt 4</span>
+        <h2 class="text-2xl font-serif font-bold">Die Schatulle öffnen</h2>
+        <p class="text-xs text-cozy-muted font-sans" id="chestSubtitle">Hebe den Deckel an, um hineinzuschauen 📦</p>
+      </div>
+
+      <!-- Schatulle Visual Container -->
+      <div id="chestContainer" class="perspective-container relative w-72 h-72 rounded-3xl bg-gradient-to-b from-[#2C2523] to-[#1C170A] p-4 shadow-2xl border-4 border-[#C9A22E] flex items-center justify-center cursor-pointer select-none overflow-hidden">
+        
+        <!-- Innerer Samt-Boden & Polaroid-Vorschau -->
+        <div class="absolute inset-3 rounded-2xl bg-[#3D2C29] border border-amber-900/40 shadow-inner flex flex-col items-center justify-center p-4">
+          <div class="w-48 h-48 bg-[#FAF6F0] rounded-xl shadow-lg border border-stone-200 transform rotate-1 flex items-center justify-center overflow-hidden">
+            <span class="text-3xl">📷</span>
+          </div>
+        </div>
+
+        <!-- Seidenpapier Lage Links -->
+        <div id="tissueLeft" class="absolute inset-3 w-[55%] rounded-l-2xl bg-[#F6EDE4] shadow-md border-r border-[#E2D4C3] transition-all duration-700 origin-left flex items-center justify-end p-2 opacity-95 z-10">
+          <div class="w-full h-full border border-dashed border-[#DFCEBD] rounded-l-xl opacity-60"></div>
+        </div>
+
+        <!-- Seidenpapier Lage Rechts -->
+        <div id="tissueRight" class="absolute inset-3 left-[45%] w-[55%] rounded-r-2xl bg-[#EFE3D8] shadow-md border-l border-[#D8C7B5] transition-all duration-700 origin-right flex items-center justify-start p-2 opacity-95 z-10">
+          <div class="w-full h-full border border-dashed border-[#DFCEBD] rounded-r-xl opacity-60"></div>
+        </div>
+
+        <!-- Seidenpapier Herz-Sticker -->
+        <div id="tissueSeal" class="absolute z-20 transition-all duration-500">
+          <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-[#9E384D] to-[#C24B63] shadow-md flex items-center justify-center border-2 border-[#E5C07B] active:scale-95 transition-transform">
+            <span class="text-lg">💖</span>
+          </div>
+        </div>
+
+        <!-- Schatullen-Deckel (überdeckt die Box zu Beginn) -->
+        <div id="chestLid" class="absolute inset-0 rounded-2xl bg-gradient-to-b from-[#ECD79B] via-[#D4AF37] to-[#A3811E] border-2 border-[#C9A22E] shadow-2xl flex flex-col items-center justify-center transition-all duration-700 z-30">
+          <div class="w-16 h-1 bg-[#8A6F1D]/40 rounded-full mb-3"></div>
+          <span class="font-serif font-bold text-lg text-[#57440E] tracking-wider"><span class="recipient-name">Miriam</span>'s Box</span>
+          <span class="text-[10px] font-sans text-[#57440E]/80 uppercase tracking-widest mt-1">Entriegelt ✨</span>
+          <div class="mt-4 px-3 py-1 rounded-full bg-[#382D0F]/10 border border-[#382D0F]/20 text-[11px] font-sans font-medium text-[#57440E] flex items-center space-x-1">
+            <span>Öffnen ☝️</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Button darunter -->
+      <div class="mt-5">
+        <button id="btnOpenChestAction" class="py-2.5 px-6 rounded-xl bg-cozy-card border border-cozy-kraftDark/40 text-xs font-sans font-medium text-cozy-ink active:scale-95 transition-transform flex items-center space-x-1.5 shadow-sm">
+          <span id="btnChestActionText">Deckel anheben 📦</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SCREEN 5: POLAROID STAPEL -->
     <!-- ========================================== -->
     <div id="screenPolaroids" class="w-full hidden flex-col items-center justify-center transition-all duration-500">
       <div class="text-center mb-3 space-y-0.5">
         <div class="flex items-center justify-center space-x-2">
+          <span class="text-xs font-sans uppercase tracking-widest text-cozy-ribbon font-bold">Schritt 5</span>
+          <span class="text-xs text-cozy-muted/60">•</span>
           <span class="text-xs font-sans uppercase tracking-widest text-cozy-ribbon font-bold">Erinnerungen</span>
           <span class="text-xs text-cozy-muted" id="polaroidCounter">1 / 4</span>
         </div>
@@ -347,14 +454,14 @@
     </div>
 
     <!-- ========================================== -->
-    <!-- SCREEN 4: DER VERSIEGELTE BRIEF (FINALE) -->
+    <!-- SCREEN 6: DER VERSIEGELTE BRIEF (FINALE) -->
     <!-- ========================================== -->
     <div id="screenLetter" class="w-full hidden flex-col items-center justify-center transition-all duration-500">
       
       <!-- Zustand A: Der geschlossene Umschlag mit Wachssiegel -->
       <div id="envelopeWrapper" class="flex flex-col items-center space-y-5">
         <div class="text-center space-y-1">
-          <span class="text-xs font-sans uppercase tracking-widest text-cozy-wax font-bold">Das Finale</span>
+          <span class="text-xs font-sans uppercase tracking-widest text-cozy-wax font-bold">Schritt 6 • Das Finale</span>
           <h2 class="text-2xl font-serif font-bold">Ein persönlicher Brief</h2>
           <p class="text-xs text-cozy-muted font-sans">Tippe auf das Wachssiegel, um ihn zu öffnen</p>
         </div>
@@ -788,7 +895,9 @@
         this.screens = {
           intro: document.getElementById('screenIntro'),
           ribbon: document.getElementById('screenRibbon'),
+          paper: document.getElementById('screenPaper'),
           lock: document.getElementById('screenLock'),
+          chest: document.getElementById('screenChest'),
           polaroids: document.getElementById('screenPolaroids'),
           letter: document.getElementById('screenLetter')
         };
@@ -824,7 +933,9 @@
         const titles = [
           "Päckchen empfangen",
           "Schleife lösen",
+          "Geschenkpapier",
           "Zahlenschloss",
+          "Schatulle öffnen",
           "Erinnerungen",
           "Persönlicher Brief"
         ];
@@ -842,12 +953,14 @@
 
         // Alle Screens ausblenden
         Object.values(this.screens).forEach(screen => {
-          screen.classList.add('hidden');
-          screen.classList.remove('flex');
+          if (screen) {
+            screen.classList.add('hidden');
+            screen.classList.remove('flex');
+          }
         });
 
         // Aktiven Screen einblenden
-        const screenKeys = ['intro', 'ribbon', 'lock', 'polaroids', 'letter'];
+        const screenKeys = ['intro', 'ribbon', 'paper', 'lock', 'chest', 'polaroids', 'letter'];
         const activeScreen = this.screens[screenKeys[stepNumber]];
         if (activeScreen) {
           activeScreen.classList.remove('hidden');
@@ -934,12 +1047,54 @@
         bow.style.transition = 'transform 0.4s ease';
 
         setTimeout(() => {
-          this.setStep(2); // Weiter zu Schloss
+          this.setStep(2); // Weiter zu Geschenkpapier auffalten
         }, 700);
       }
 
       /* ==========================================================
-         SCHRITT 2: MESSINGSCHLOSS-LOGIK
+         SCHRITT 2: GESCHENKPAPIER AUFFALTEN
+         ========================================================== */
+      initPaperUnwrap() {
+        const paperBox = document.getElementById('paperBoxArea');
+        const tape = document.getElementById('paperTape');
+        const flapLeft = document.getElementById('paperFlapLeft');
+        const flapRight = document.getElementById('paperFlapRight');
+        const btnOpen = document.getElementById('btnOpenPaper');
+        const subtitle = document.getElementById('paperSubtitle');
+
+        let isUnwrapped = false;
+
+        const unwrap = () => {
+          if (isUnwrapped) return;
+          isUnwrapped = true;
+
+          sound.init();
+          sound.playPaper();
+          sound.vibrate(30);
+
+          if (tape) {
+            tape.style.transform = 'scale(0.4)';
+            tape.style.opacity = '0';
+          }
+
+          if (flapLeft) flapLeft.style.transform = 'rotateY(-130deg)';
+          if (flapRight) flapRight.style.transform = 'rotateY(130deg)';
+
+          if (subtitle) {
+            subtitle.textContent = "Die Schatulle kommt zum Vorschein! ✨";
+          }
+
+          setTimeout(() => {
+            this.setStep(3); // Weiter zu Zahlenschloss
+          }, 850);
+        };
+
+        if (paperBox) paperBox.addEventListener('click', unwrap);
+        if (btnOpen) btnOpen.addEventListener('click', unwrap);
+      }
+
+      /* ==========================================================
+         SCHRITT 3: MESSINGSCHLOSS-LOGIK
          ========================================================== */
       initLock() {
         const updateDial = (dialIndex, delta) => {
@@ -980,8 +1135,7 @@
             confetti.burst(40);
 
             setTimeout(() => {
-              this.renderPolaroidStack();
-              this.setStep(3); // Weiter zu Polaroids
+              this.setStep(4); // Weiter zu Schatulle öffnen
             }, 800);
           } else {
             // Falscher Code: Schloss wackelt
@@ -1004,7 +1158,80 @@
       }
 
       /* ==========================================================
-         SCHRITT 3: POLAROID-STAPEL RENDERN & INTERAKTION
+         SCHRITT 4: SCHATULLE & SEIDENPAPIER LÜFTEN
+         ========================================================== */
+      initChestOpen() {
+        const chestContainer = document.getElementById('chestContainer');
+        const lid = document.getElementById('chestLid');
+        const tissueLeft = document.getElementById('tissueLeft');
+        const tissueRight = document.getElementById('tissueRight');
+        const tissueSeal = document.getElementById('tissueSeal');
+        const btnAction = document.getElementById('btnOpenChestAction');
+        const btnText = document.getElementById('btnChestActionText');
+        const subtitle = document.getElementById('chestSubtitle');
+
+        let phase = 0; // 0: Deckel geschlossen, 1: Deckel offen, 2: fertig
+
+        const triggerAction = () => {
+          sound.init();
+
+          if (phase === 0) {
+            // Phase 1: Deckel anheben
+            phase = 1;
+            sound.playUnlock();
+            sound.vibrate(40);
+
+            if (lid) {
+              lid.style.transform = 'translateY(-135%) rotate(-5deg)';
+              lid.style.opacity = '0';
+              lid.style.pointerEvents = 'none';
+            }
+
+            if (subtitle) {
+              subtitle.textContent = "Streiche das zarte Seidenpapier zur Seite ✨";
+            }
+            if (btnText) {
+              btnText.textContent = "Seidenpapier lüften ✨";
+            }
+          } else if (phase === 1) {
+            // Phase 2: Seidenpapier beiseite streichen
+            phase = 2;
+            sound.playPaper();
+            sound.vibrate(35);
+            confetti.burst(35);
+
+            if (tissueSeal) {
+              tissueSeal.style.transform = 'scale(1.5)';
+              tissueSeal.style.opacity = '0';
+            }
+
+            if (tissueLeft) {
+              tissueLeft.style.transform = 'translateX(-120%) rotate(-12deg)';
+              tissueLeft.style.opacity = '0';
+            }
+
+            if (tissueRight) {
+              tissueRight.style.transform = 'translateX(120%) rotate(12deg)';
+              tissueRight.style.opacity = '0';
+            }
+
+            if (subtitle) {
+              subtitle.textContent = "Die Erinnerungen sind da! 📷✨";
+            }
+
+            setTimeout(() => {
+              this.renderPolaroidStack();
+              this.setStep(5); // Weiter zu Polaroids
+            }, 750);
+          }
+        };
+
+        if (chestContainer) chestContainer.addEventListener('click', triggerAction);
+        if (btnAction) btnAction.addEventListener('click', triggerAction);
+      }
+
+      /* ==========================================================
+         SCHRITT 5: POLAROID-STAPEL RENDERN & INTERAKTION
          ========================================================== */
       renderPolaroidStack() {
         const stack = document.getElementById('polaroidStack');
@@ -1102,7 +1329,7 @@
         if (this.currentPolaroidIndex >= CONFIG.polaroids.length) {
           // Alle Fotos angeschaut -> Weiter zum Brief
           setTimeout(() => {
-            this.setStep(4);
+            this.setStep(6);
           }, 400);
         } else {
           this.updatePolaroidCounter();
@@ -1188,7 +1415,9 @@
 
         // Sub-Module initialisieren
         this.initRibbonGesture();
+        this.initPaperUnwrap();
         this.initLock();
+        this.initChestOpen();
         this.initLetter();
       }
     }
